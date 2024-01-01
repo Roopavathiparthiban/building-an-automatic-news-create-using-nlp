@@ -1,0 +1,96 @@
+import newspaper
+import feedparser
+ 
+ 
+def scrape_news_from_feed(feed_url):
+    articles = []
+    feed = feedparser.parse(feed_url)
+    for entry in feed.entries:
+        # create a newspaper article object
+        article = newspaper.Article(entry.link)
+        # download and parse the article
+        article.download()
+        article.parse()
+        # extract relevant information
+        articles.append({
+            'title': article.title,
+            'author': article.authors,
+            'publish_date': article.publish_date,
+            'content': article.text
+        })
+    return articles
+ 
+ 
+feed_url = 'http://feeds.bbci.co.uk/news/rss.xml'
+articles = scrape_news_from_feed(feed_url)
+ 
+# print the extracted articles
+for article in articles:
+    print('Title:', article['title'])
+    print('Author:', article['author'])
+    print('Publish Date:', article['publish_date'])
+    print('Content:', article['content'])
+    print()
+Output:
+
+
+news scraping- Output
+
+
+Don't miss your chance to ride the wave of the data revolution! Every industry is scaling new heights by tapping into the power of data. Sharpen your skills, become a part of the hottest trend in the 21st century.
+Dive into the future of technology - explore the Complete Machine Learning and Data Science Program by GeeksforGeeks and stay ahead of the curve.
+
+Commit to GfG's Three-90 Challenge! Purchase a course, complete 90% in 90 days, and save 90% cost click here to explore.
+Last Updated : 09 Mar, 2023
+
+1
+
+Previous
+Recursive Feature Elimination with Cross-Validation in Scikit Learn
+Next
+Data Partitioning in PySpark
+Share your thoughts in the comments
+
+Add Your Comment
+Similar Reads
+Newspaper scraping using Python and News API
+Project Idea - Searching news from Old Newspaper using NLP
+Newspaper: Article scraping & curation (Python)
+Build an Application to extract news from Google News Feed Using Python
+Fetching top news using News API
+Web Scraping Financial News Using Python
+Scrape most reviewed news and tweet using Python
+Python | Django News App
+Read latest news using newsapi | Python
+Implementing News Parser using Template Method Design Pattern in Python
+Complete Tutorials
+Python API Tutorial: Getting Started with APIs
+Brain Teasers
+SDLC Models | Types, Phases, When to use
+Advanced Python Tutorials
+Python Automation Tutorial
+author
+siddheshsagar
+Article Tags :
+Picked 
+Technical Scripter 2022 
+Web-scraping 
+Python 
+Technical Scripter
+Practice Tags :
+python
+Additional Information
+
+Courses
+course-img
+197k+ interested Geeks
+Complete Machine Learning & Data Science Program
+Explore
+course-img
+212k+ interested Geeks
+Data Structures & Algorithms in Python - Self Paced
+Explore
+course-img
+17k+ interested Geeks
+GATE Data Science and Artificial Intelligence 2025
+Explore
